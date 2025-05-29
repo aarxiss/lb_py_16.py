@@ -1,5 +1,24 @@
 from datetime import date, timedelta
 
+class Author:
+    def __init__(self, first_name, last_name):
+        self.first_name = first_name
+        self.last_name = last_name
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
+
+class Book:
+    def __init__(self, title, author, year):
+        self.title = title
+        self.author = author
+        self.year = year
+
+    def __str__(self):
+        return f"'{self.title}' by {self.author} ({self.year})"
+
+
 class User:
     def __init__(self, name):
         self.name = name
@@ -11,7 +30,7 @@ class User:
 class Library:
     def __init__(self):
         self.books = []
-        self.borrow_history = []  # список словників: {'book': ..., 'user': ..., 'due_date': ...}
+        self.borrow_history = []
 
     def add_book(self, book):
         self.books.append(book)
@@ -47,13 +66,14 @@ class Library:
                 return
         print("Запис про видачу не знайдено")
 
-# Приклад:
-user1 = User("Іван Петренко")
+
+# Тест
 author1 = Author("Леся", "Українка")
 book1 = Book("Лісова пісня", author1, 1911)
+user1 = User("Іван Петренко")
 
 lib = Library()
 lib.add_book(book1)
 
 lib.borrow_book("Лісова пісня", user1, days=7)
-lib.return_book("Лісова пісня", user1)  # успішне повернення
+lib.return_book("Лісова пісня", user1)
